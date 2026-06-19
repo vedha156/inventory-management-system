@@ -35,7 +35,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 
 app.get("/", (req,res)=>{
-    res.send("Inventory Management Backend Running Version 2");
+    res.send("VEDHA TEST 2026");
 });
 
 const PORT = process.env.PORT || 5000;
