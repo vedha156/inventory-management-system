@@ -1,5 +1,7 @@
 require("dotenv").config();
 
+console.log("VEDHA APPJS LOADED");
+
 const express = require("express");
 
 const cors = require("cors");
@@ -35,6 +37,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 
 app.get("/", (req,res)=>{
+    console.log("ROOT ROUTE HIT");
     res.send("VEDHA TEST 2026");
 });
 
