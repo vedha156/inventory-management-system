@@ -1,97 +1,116 @@
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Segoe UI,sans-serif;
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', sans-serif;
+  --color-primary: #4f46e5;
+  --color-primary-hover: #4338ca;
+  --color-background: #0f172a;
+  --color-surface: #1e293b;
+  --color-surface-hover: #334155;
+  --color-border: #334155;
+  --color-text-main: #f8fafc;
+  --color-text-muted: #94a3b8;
 }
 
-body{
-  background:#f4f6f9;
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-text-main);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-surface-hover);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-muted);
+  }
 }
 
-.sidebar{
-  width:250px;
-  height:100vh;
-  background:#111827;
-  color:white;
-  position:fixed;
-  left:0;
-  top:0;
-  padding:20px;
-}
+@layer components {
+  .glass-card {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
 
-.sidebar h2{
-  margin-bottom:30px;
-}
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 focus:ring-offset-slate-900 transition-colors duration-200;
+  }
+  
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-4 py-2 bg-slate-700 text-white text-sm font-medium rounded-lg hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 focus:ring-offset-slate-900 transition-colors duration-200;
+  }
 
-.sidebar a{
-  display:block;
-  color:white;
-  text-decoration:none;
-  margin:15px 0;
-}
+  .btn-danger {
+    @apply inline-flex items-center justify-center px-4 py-2 bg-rose-600 text-white text-sm font-medium rounded-lg hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500 focus:ring-offset-slate-900 transition-colors duration-200;
+  }
 
-.sidebar a:hover{
-  color:#60a5fa;
-}
+  .input-field {
+    @apply block w-full px-4 py-2.5 bg-slate-800/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all duration-200;
+  }
 
-.main{
-  margin-left:270px;
-  padding:30px;
-}
+  .table-container {
+    @apply w-full overflow-x-auto rounded-xl border border-slate-700/50 bg-slate-800/30 backdrop-blur-sm;
+  }
 
-.dashboard-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
-  margin-top:20px;
-}
+  .modern-table {
+    @apply w-full text-left text-sm text-slate-300;
+  }
 
-.card{
-  background:white;
-  padding:20px;
-  border-radius:12px;
-  box-shadow:0 2px 10px rgba(0,0,0,0.1);
-}
+  .modern-table thead {
+    @apply text-xs uppercase bg-slate-800/80 text-slate-400 border-b border-slate-700/50;
+  }
 
-.card h3{
-  color:#666;
-}
+  .modern-table th {
+    @apply px-6 py-4 font-semibold tracking-wider;
+  }
 
-.card p{
-  font-size:28px;
-  color:#2563eb;
-  font-weight:bold;
-  margin-top:10px;
-}
+  .modern-table tbody tr {
+    @apply border-b border-slate-700/30 hover:bg-slate-700/30 transition-colors duration-150;
+  }
 
-table{
-  width:100%;
-  border-collapse:collapse;
-  margin-top:20px;
-  background:white;
-}
+  .modern-table tbody tr:last-child {
+    @apply border-b-0;
+  }
 
-table th{
-  background:#2563eb;
-  color:white;
-  padding:12px;
-}
+  .modern-table td {
+    @apply px-6 py-4 whitespace-nowrap;
+  }
 
-table td{
-  padding:12px;
-  border-bottom:1px solid #ddd;
-}
+  .badge-success {
+    @apply px-2.5 py-1 text-xs font-medium rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20;
+  }
+  
+  .badge-warning {
+    @apply px-2.5 py-1 text-xs font-medium rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20;
+  }
 
-button{
-  background:#2563eb;
-  color:white;
-  border:none;
-  padding:10px 15px;
-  border-radius:6px;
-  cursor:pointer;
-}
+  .badge-danger {
+    @apply px-2.5 py-1 text-xs font-medium rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20;
+  }
 
-button:hover{
-  background:#1d4ed8;
+  .badge-info {
+    @apply px-2.5 py-1 text-xs font-medium rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20;
+  }
 }

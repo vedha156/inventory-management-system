@@ -1,0 +1,10 @@
+{
+  "name": "inventory-management-system-root",
+  "version": "1.0.0",
+  "description": "Root package config for Render deployment",
+  "scripts": {
+    "install-backend": "cd backend && npm install",
+    "build": "npm run install-backend",
+    "start": "cd backend && node app.js"
+  }
+}

@@ -1,45 +1,23 @@
-import Link from "next/link";
+"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      router.push("/dashboard");
+    } else {
+      router.push("/login");
+    }
+  }, [router]);
 
   return (
-
-    <div style={{ padding: "20px" }}>
-
-      <h1>Inventory Management System</h1>
-
-      <br />
-
-      <Link href="/login">
-        Login
-      </Link>
-
-      <br /><br />
-
-      <Link href="/dashboard">
-        Dashboard
-      </Link>
-
-      <br /><br />
-
-      <Link href="/products">
-        Products
-      </Link>
-
-      <br /><br />
-
-      <Link href="/orders">
-        Orders
-      </Link>
-
-      <br /><br />
-
-      <Link href="/audit-logs">
-        Audit Logs
-      </Link>
-
+    <div className="min-h-screen bg-slate-900 flex items-center justify-center">
+      <div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
     </div>
-
   );
-
 }
